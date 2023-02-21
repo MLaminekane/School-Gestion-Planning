@@ -2,35 +2,35 @@
 const classes = [
     { id: 1, nom: 'L2 GLRS A', effectif: 29, semaine: '', planning: [[
         {module: 'PYTHON', prof: 'Aly NIANG', duree: 3, debut: 9,salle: '201', etat: 'en ligne'},
-        {module: 'PHP', prof: 'Mr Wane', duree: 4, debut: 13,salle: '402', etat: 'presentiel'}
+        {module: 'PHP', prof: 'Mr Wane', duree: 4, debut: 13,salle: '402', etat: ''}
     ], [], [
-        {module: 'FLUTTER', prof: 'Mr Wane', duree: 4, debut: 13,salle: '402', etat: 'presentiel'}
+        {module: 'FLUTTER', prof: 'Mr Wane', duree: 4, debut: 13,salle: '402', etat: ''}
 
     ], [], [
-        {module: 'LC', prof: 'Mr Wane', duree: 4, debut: 13,salle: '302', etat: 'presentiel'},
-        {module: 'PHP', prof: 'Mr Wane', duree: 4, debut: 13,salle: '402', etat: 'presentiel'}
+        {module: 'LC', prof: 'Mr Wane', duree: 4, debut: 13,salle: '302', etat: ''},
+        {module: 'PHP', prof: 'Mr Wane', duree: 4, debut: 13,salle: '402', etat: ''}
     ], [
-        {module: 'JAVA', prof: 'Mr Wane', duree: 4, debut: 8,salle: '101', etat: 'presentiel'}
+        {module: 'JAVA', prof: 'Mr Wane', duree: 4, debut: 8,salle: '', etat: 'en ligne'}
     ]] },
     { id: 2, nom: 'L2 GLRS B', effectif: 29, semaine: '', planning: [[], [
-        {module: 'PHP', prof: 'Mr Wane', duree: 4, debut: 13,salle: '402', etat: 'presentiel'}
+        {module: 'PHP', prof: 'Mr Wane', duree: 4, debut: 13,salle: '402', etat: ''}
 
     ], [], [], [
-        {module: 'LARAVEL', prof: 'Mr Wane', duree: 4, debut: 13,salle: 'incub', etat: 'presentiel'}
+        {module: 'LARAVEL', prof: 'Mr Wane', duree: 4, debut: 13,salle: 'incub', etat: ''}
   
     ], []] },
     { id: 3, nom: 'L2 ETSE', effectif: 29, semaine: '', planning: [[], [], [
         {module: 'RUBY', prof: 'Mr Wane', duree: 4, debut: 9,salle: '', etat: 'en ligne'}
 
     ], [], [], [
-        {module: 'PHP', prof: 'Mr Wane', duree: 4, debut: 8,salle: '402', etat: 'presentiel'}
+        {module: 'PHP', prof: 'Mr Wane', duree: 4, debut: 8,salle: '402', etat: ''}
 
     ]], statut: '' },
     { id: 4, nom: 'L1 A', effectif: 40, semaine: '', planning: [[], [
-        {module: 'PYTHON', prof: 'Mr Wane', duree: 4, debut: 13,salle: 'incub', etat: 'presentiel'}
+        {module: 'PYTHON', prof: 'Mr Wane', duree: 4, debut: 13,salle: 'incub', etat: ''}
 
     ], [], [
-        {module: 'PHP', prof: 'Mr Wane', duree: 2, debut: 15,salle: '402', etat: 'presentiel'}
+        {module: 'PHP', prof: 'Mr Wane', duree: 2, debut: 15,salle: '402', etat: ''}
 
     ], [], []], statut: '' },
     { id: 5, nom: 'IAGE B', effectif: 21, semaine: '', planning: [[], [], [], [], [], []], statut: '' },
@@ -231,17 +231,34 @@ const classes = [
   updateSpan(classes, 'classes');
   
   function afficherPlanning() {
-    //Effacer tout le planning
     effacerCours();
-    //Afficher le nouveau planning
     classe.planning.forEach((p, i) => {
         const jour = document.querySelector(`#day_${i + 1}`);
-        p.forEach(c => {
+        p.forEach((c, j) => {
             let posColor = Math.floor(Math.random() * colors.length);
-            jour.appendChild(createDivCours(c.debut, c.duree, colors[posColor], c.module, c.prof, c.salle, c.etat));
+            const divCours = createDivCours(c.debut, c.duree, colors[posColor], c.module, c.prof, c.salle, c.etat, i, j);
+            divCours.addEventListener('click', () => {
+                const modal = document.getElementById("modal-info");
+                modal.style.display = "block";
+                document.getElementById("module").innerHTML = `Module: ${c.module}`;
+                document.getElementById("prof").innerHTML = `Enseignant: ${c.prof}`;
+                document.getElementById("salle").innerHTML = `Salle: ${c.salle}`;
+                document.getElementById("duree").innerHTML = `Durée: ${c.duree}`;
+                document.getElementById("debut").innerHTML = `Début: ${c.debut}`;
+                document.getElementById("etat").innerHTML = `Etat: ${c.etat}`;
+            });
+            jour.appendChild(divCours);
         });
-    });  
-  }
+    });
+}
+
+const cancelButton = document.querySelector('.cancel-buttonn');
+cancelButton.addEventListener('click', () => {
+    const modal = document.getElementById("modal-info");
+    modal.style.display = "none";
+});
+
+  
   
   //Fonction qui permet de creer un cours
   function createDivCours(debut, duree, color, module, prof, salle, statut) {
