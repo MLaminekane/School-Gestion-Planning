@@ -5,15 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planning</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="plg.css">
 </head>
 <body style="	background: url(pexels-bich-tran-760710.jpg);
-                background-repeat: no-repeat;
-                background-size: cover;
-                font-family: Arial, sans-serif;
-                padding: 20px;
-                text-align: center;
-">
+background-repeat: no-repeat;
+background-size: cover;
+font-family: Arial, sans-serif;
+padding: 20px;
+text-align: center; ">
     <div class="container">
         <div class="sideBar">
             <div class="input">
@@ -52,6 +51,8 @@
             <div class="input">
                 <select  id="select""></select>
             </div>
+          <button class="deconnection button3" onclick="window.location.href='/home.html' ">Deconnection</button>
+
         </div>
         <div class="content">
             <div class="title">
@@ -79,42 +80,36 @@
                 <div class="day">
                     <div class="day-name my-color">
                         <span>LUNDI</span>
-                        <span class="add-cours" day="1">+</span>
                     </div>
                     <div class="day-content" id="day_1"></div>
                 </div>
                 <div class="day">
                     <div class="day-name my-color">
                         <span>MARDI</span>
-                        <span class="add-cours" day="2">+</span>
                     </div>
                     <div class="day-content" id="day_2"></div>
                 </div>
                 <div class="day">
                     <div class="day-name my-color">
                         <span>MERCREDI</span>
-                        <span class="add-cours" day="3">+</span>
                     </div>
                     <div class="day-content" id="day_3"></div>
                 </div>
                 <div class="day">
                     <div class="day-name my-color">
                         <span>JEUDI</span>
-                        <span class="add-cours" day="4">+</span>
                     </div>
                     <div class="day-content" id="day_4"></div>
                 </div>
                 <div class="day">
                     <div class="day-name my-color">
                         <span>VENDREDI</span>
-                        <span class="add-cours" day="5">+</span>
                     </div>
                     <div class="day-content" id="day_5"></div>
                 </div>
                 <div class="day">
                     <div class="day-name my-color">
                         <span>SAMEDI</span>
-                        <span class="add-cours" day="6">+</span>
                     </div>
                     <div class="day-content" id="day_6"></div>
                 </div>
@@ -166,34 +161,11 @@
     </div>
     <!-- END MODAL ------------------------------ -->
 
-    <div class="window">
-        <h2>Ajouter :</h2>
-        <button class="add-button" id="add-prof">Ajouter enseignant</button>
-        <button class="add-button" id="add-class">Ajouter classe</button>
-        <button class="add-button" id="add-salle">Ajouter salle</button>
-        <button class="add-button" id="add-module">Ajouter module</button>
-        <div class="button-container">
-          <button class="cancel-button button2">Quitter</button>
-          <button class="deconnection button2" onclick="window.location.href='login.html'">Deconnection</button>
 
-        </div>
-    </div>
 
-    <div id="modal-info" class="modal">
-        <div class="modal-content">
-            <p id="module">Module: </p>
-            <p id="prof">Enseignant: </p>
-            <p id="salle">Salle: </p>
-            <p id="duree">Durée: </p>
-            <p id="debut">Début: </p>
-            <p id="etat">Etat: </p>
-            <div class="button-container">
-                <button class="cancel-buttonn button2">Quitter</button>
-            </div>
-        </div>
-    </div>
+
       
     <!-- Javascript -->
-    <script src="script.js"></script>
+    <script src="plg.js"></script>
 </body>
 </html>
